@@ -15,19 +15,18 @@ echo aaa bbb ccc
 echo ddd eee fff
 echo ggg hhh iii
 """
-import os, sys, re
+import os, sys, re, string
 
 def perf_cmd(cmd, args):
-    print cmd, args
-    pat = re.compile(r"\$\d")
+    pat = re.compile(r"%(\d)")
     pats = pat.findall(cmd)
-    print pats
-    for i, p in enumerate(pats):
-        cmd = string.replace(cmd, p, args[i])
+    for p in pats:
+        r = '%' + p
+        i= int(p)-1
+        cmd = string.replace(cmd, r, args[i])
     print cmd
 
 def main(pfile, cmd):
-    print cmd
     with open(pfile, "r") as pf:
         lines = pf.readlines()
         for l in lines:
