@@ -24,7 +24,7 @@ def perf_cmd(cmd, args):
         r = '%' + p
         i= int(p)-1
         cmd = string.replace(cmd, r, args[i])
-    print cmd
+    os.system(cmd)
 
 def main(pfile, cmd):
     with open(pfile, "r") as pf:
